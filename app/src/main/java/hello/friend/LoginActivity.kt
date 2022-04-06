@@ -2,25 +2,19 @@ package hello.friend
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var editEmail: EditText
     private lateinit var editPassword: EditText
     private lateinit var btnLogin: Button
-
+    private lateinit var btnSignUp: Button
     private lateinit var auth: FirebaseAuth
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +27,14 @@ class LoginActivity : AppCompatActivity() {
         editEmail = findViewById(R.id.editEmail)
         editPassword = findViewById(R.id.editPassword)
         btnLogin = findViewById(R.id.btnLogin)
+        btnSignUp = findViewById(R.id.btnSignUp)
 
-        editEmail.setOnClickListener {
+        btnSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnLogin.setOnClickListener {
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
 
@@ -46,11 +46,11 @@ class LoginActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Log in user
-                        val intent = Intent(this, LoginActivity::class.java)
+                        // Logs in a user
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, "User does not exist.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "User does not exist", Toast.LENGTH_SHORT).show()
                     }
                 }
         }

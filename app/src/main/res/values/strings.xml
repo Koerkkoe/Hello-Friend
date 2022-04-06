@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Hello Friend</string>
     <string name="hello_friend">Hello Friend!</string>
-    <string name="profile">Profile</string>
-    <string name="name_age">Name, age</string>
-    <string name="bio">Bio</string>
-    <string name="edit_profile_button">Edit Profile</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="btnLogin">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="login">login</string>
 </resources>
